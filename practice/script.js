@@ -50,11 +50,20 @@
     stop() {
       clearInterval(this.interval)
     }
-    reset() {}
+    reset() {
+      clearInterval(this.interval)
+      this.print(this.defaultTime)
+      this.interval = null
+      this.defaultTime = '00:00.00'
+      this.startTime = 0
+      this.elapsedTime = 0
+
+    }
   }
 
   const $startButton = get('.timer_button.start')
   const $stopButton = get('.timer_button.stop')
+  const $resetButton = get('.timer_button.reset')
   const $timer = get('.timer')
   const stopwatch = new Stopwatch($timer)
 
@@ -64,5 +73,9 @@
 
   $stopButton.addEventListener('click', () => {
     stopwatch.stop()
+  })
+
+  $resetButton.addEventListener('click', () => {
+    stopwatch.reset()
   })
 })()
